@@ -1,0 +1,16 @@
+{
+    "name": "Utility.Reflection",
+    "rootNamespace": "Utility.Reflection",
+    "references": [
+        "GUID:e21112c0c64ace942acdc6405d3c5cdb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
