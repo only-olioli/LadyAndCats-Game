@@ -39,7 +39,7 @@ namespace Settings
                 List<string> resolutions = new();
                 foreach (UnityEngine.Resolution resolution in Screen.resolutions)
                 {
-                    resolutions.Add($"{resolution.width}x{resolution.height}x{resolution.refreshRate}Hz");
+                    resolutions.Add($"{resolution.width}x{resolution.height} {resolution.refreshRate}Hz");
                 }
                 return new(resolutions);
             }

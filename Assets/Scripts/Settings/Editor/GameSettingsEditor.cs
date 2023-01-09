@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Settings.Editor
 {
     [CustomEditor(typeof(GameSettings))]
-    public sealed class GameSettingsEditor :UnityEditor. Editor
+    public sealed class GameSettingsEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {

@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEditor.Callbacks;
 using Utility.Editor;
 using UnityEngine;
+using System;
 
 namespace Settings.Editor
 {
@@ -13,7 +14,8 @@ namespace Settings.Editor
         private const string ISETTING = nameof(ISetting);
         private const string OPEN_EDITOR = "Tools/Settings Editor";
 
-        private string _path;
+        private string _assetPath;
+        private string _savePath;
         private string _error;
 
         [MenuItem(OPEN_EDITOR)]
@@ -35,13 +37,20 @@ namespace Settings.Editor
 
         private void OnEnable()
         {
-            _path = SettingFilesController.AssetPath;
+            _assetPath = SettingFilesController.AssetPath;
+            _savePath = SettingFilesController.SavePath;
             _error = string.Empty;
         }
 
         private void OnGUI()
         {
-            DrawPath();
+            DrawPathChange("Asset Path: ", ref _assetPath, path => SettingFilesController.AssetPath = path, () => SettingFilesController.AssetPath);
+            DrawPathChange("Save Path: ", ref _savePath, path => SettingFilesController.SavePath = path, () => SettingFilesController.SavePath);
+
+            if (_error != string.Empty)
+            {
+                EditorGUILayout.HelpBox(_error, MessageType.Warning);
+            }
 
             foreach (ObjectPropertyEditor editor in SettingFilesController.Editors)
             {
@@ -49,15 +58,15 @@ namespace Settings.Editor
             }
         }
 
-        private void DrawPath()
+        private void DrawPathChange(string label, ref string text, Action<string> setPath, Func<string> getPath)
         {
-            _path = EditorGUILayout.TextField("Path:", _path);
+            text = EditorGUILayout.TextField(label, text);
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Change Path"))
             {
                 try
                 {
-                    SettingFilesController.AssetPath = _path;
+                    setPath(text);
                     _error = string.Empty;
                 }
                 catch (System.Exception e)
@@ -67,13 +76,9 @@ namespace Settings.Editor
             }
             if (GUILayout.Button("Current Path"))
             {
-                _path = SettingFilesController.AssetPath;
+                text = getPath();
             }
             EditorGUILayout.EndHorizontal();
-            if (_error != string.Empty)
-            {
-                EditorGUILayout.HelpBox(_error, MessageType.Warning);
-            }
         }
     }
 }

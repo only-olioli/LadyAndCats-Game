@@ -1,5 +1,4 @@
 #if UNITY_EDITOR
-using Codice.Client.BaseCommands.BranchExplorer;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -22,8 +21,27 @@ namespace Settings.Editor
 
         public static string AssetPath
         {
-            get => _fileData.Path;
-            set => _fileData.Path = value;
+            get => _fileData.AssetPath;
+            set
+            {
+                _fileData.AssetPath = value;
+                Undo.RecordObject(_settings, "Change GameSettings assets path.");
+                _settings.AssetPath = AssetPath;
+                EditorUtility.SetDirty(_settings);
+                AssetDatabase.SaveAssets();
+            }
+        }
+
+        public static string SavePath
+        {
+            get => AssetDatabaseExtentions.FilePathToAssetPath(_settings.SavePath);
+            set
+            {
+                Undo.RecordObject(_settings, "Change GameSettings save path.");
+                _settings.SavePath = _fileData.SetSavePath(SavePath, value);
+                EditorUtility.SetDirty(_settings);
+                AssetDatabase.SaveAssets();
+            }
         }
 
         static SettingFilesController()
@@ -32,6 +50,7 @@ namespace Settings.Editor
             _settings = _fileData.GetSettings();
             InitSettings();
             EditorApplication.projectChanged += ProjectChangedHandle;
+            Undo.undoRedoPerformed += UndoHandle;
         }
 
         private static void InitSettings()
@@ -88,12 +107,18 @@ namespace Settings.Editor
                 return;
             }
 
+            AssetDatabase.Refresh();
             string assetPath = AssetDatabase.GetAssetPath(_settings);
-            if (assetPath != _fileData.PathFile)
+            if (assetPath != _fileData.AssetPathFile)
             {
                 _fileData.ResetPath(assetPath);
             }
             InitSettings();
+        }
+
+        private static void UndoHandle()
+        {
+            _fileData.ResetPath(_settings.AssetPath, SavePath);
         }
 
         private static bool IsSetting(Type type)

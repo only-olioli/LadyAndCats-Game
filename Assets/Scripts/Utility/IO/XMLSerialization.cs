@@ -7,6 +7,7 @@ namespace Utility.IO
     {
         public static void Write<T>(T obj, string path)
         {
+            DirectoryExtentions.TryCreate(new DirectoryInfo(path).Parent);
             using var stream = new FileStream(path, FileMode.Create);
             var XML = new XmlSerializer(typeof(T));
             XML.Serialize(stream, obj);

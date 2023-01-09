@@ -4,10 +4,20 @@ namespace Settings
 {
     public sealed class GameSettings : ScriptableObject
     {
-        [SerializeField] private string savePath;
-        [SerializeField] private ScriptableObject[] settings;
+        public const string Save = "/settings.xml";
 
-        public string SavePath => Application.dataPath + savePath + "/settings.xml";
+#if UNITY_EDITOR
+        [field: SerializeField] public string AssetPath { get; set; }
+#endif
+
+        [SerializeField] private string savePath;
+        [SerializeField] private ScriptableObject[] settings = { };
+
+        public string SavePath
+        {
+            get => Application.dataPath + savePath + Save;
+            set => savePath = value;
+        }
 
         public TSetting Get<TSetting>() where TSetting : ScriptableObject, ISetting
         {
