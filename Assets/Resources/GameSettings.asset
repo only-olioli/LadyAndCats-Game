@@ -1,5 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6502089925226776754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886a0f366f75a054cbbd2442ef3581aa, type: 3}
+  m_Name: FullScreen
+  m_EditorClassIdentifier: 
+--- !u!114 &-5172988252844763632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6be24a5707afde4fa11dd797c888a65, type: 3}
+  m_Name: Resolution
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,31 +36,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e8e4fced61d0b4d8dd971e9ff89c88, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
+  <AssetPath>k__BackingField: Assets\Resources
   savePath: 
   settings:
-  - {fileID: 3155380956114526679}
-  - {fileID: 8368121718217281017}
---- !u!114 &3155380956114526679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 886a0f366f75a054cbbd2442ef3581aa, type: 3}
-  m_Name: FullScreen
-  m_EditorClassIdentifier: 
---- !u!114 &8368121718217281017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6be24a5707afde4fa11dd797c888a65, type: 3}
-  m_Name: Resolution
-  m_EditorClassIdentifier: 
+  - {fileID: -6502089925226776754}
+  - {fileID: -5172988252844763632}

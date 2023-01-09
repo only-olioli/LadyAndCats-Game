@@ -107,6 +107,14 @@ namespace Settings
             setting.Load(value);
         }
 
+#if UNITY_EDITOR
+        public static NameValue GetSettingValue(ISetting setting)
+        {
+            _data ??= XMLSerialization.Read<SaveData>(((GameSettings)_settings).SavePath);
+            return GetSettingData(setting);
+        }
+#endif
+
         private static NameValue GetSettingData(ISetting setting)
         {
             if (_data is null)
