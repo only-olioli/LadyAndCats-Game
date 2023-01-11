@@ -54,7 +54,7 @@ namespace Settings
             }
         }
 
-        private static readonly DataIntializer<GameSettings> _settings;
+        private static readonly DataInitializer<GameSettings> _settings;
         private static SaveData _data;
 
         static SettingsSave()

@@ -2,12 +2,12 @@ using System;
 
 namespace Utility
 {
-    public sealed class DataIntializer<T> : IInitializer, IValueGetter<T>
+    public sealed class DataInitializer<T> : IInitializer, IValueGetter<T>
     {
         private readonly Initializer _initializer;
         private T _data;
 
-        public DataIntializer(Func<T> initialize, Action<T> postInit = null)
+        public DataInitializer(Func<T> initialize, Action<T> postInit = null)
         {
             _initializer = new(() =>
             {
@@ -26,6 +26,6 @@ namespace Utility
 
         void IInitializer.Initialize() => _initializer.Initialize();
 
-        public static implicit operator T(DataIntializer<T> dataIntializer) => dataIntializer.Get();
+        public static implicit operator T(DataInitializer<T> dataIntializer) => dataIntializer.Get();
     }
 }

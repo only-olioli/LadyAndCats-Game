@@ -5,7 +5,7 @@ namespace Settings
 {
     internal static class SettingsHelper
     {
-        private static readonly DataIntializer<GameSettings> _gameSettings;
+        private static readonly DataInitializer<GameSettings> _gameSettings;
 
         static SettingsHelper()
         {

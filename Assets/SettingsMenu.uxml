@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Settings.uss?fileID=7433441132597879392&amp;guid=77fc12e421c7dc742b27743d5af534b7&amp;type=3#Settings" />
+    <ui:VisualElement name="Menu" style="width: 60%; left: 20%; height: 80%; top: 10%;">
+        <ui:VisualElement name="Settings" style="height: 90%; justify-content: flex-start;">
+            <ui:DropdownField label="Resolution" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="Resolution" class="element" style="flex-direction: column;" />
+            <ui:Toggle label="FullScreen" name="FullScreen" value="true" class="element" style="flex-direction: row-reverse;" />
+        </ui:VisualElement>
+        <ui:Button text="Back" display-tooltip-when-elided="true" name="Back" class="button element" style="height: 10%;" />
+    </ui:VisualElement>
+</ui:UXML>
