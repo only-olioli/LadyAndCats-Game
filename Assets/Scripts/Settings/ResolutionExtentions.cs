@@ -8,8 +8,7 @@ namespace Settings
         public static bool Compare(this UnityEngine.Resolution resolution, UnityEngine.Resolution other)
         {
             return resolution.width == other.width &&
-                resolution.height == other.height &&
-                resolution.refreshRate == other.refreshRate;
+                resolution.height == other.height;
         }
 
         public static int Index(this UnityEngine.Resolution resolution)

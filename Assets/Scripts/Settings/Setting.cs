@@ -5,7 +5,7 @@ using Utility;
 
 public abstract class Setting<TSelf, TValue> : ScriptableObject, ISetting, IValueController<TValue> where TSelf : Setting<TSelf, TValue>
 {
-    private static readonly DataIntializer<TSelf> _setting;
+    private static readonly DataInitializer<TSelf> _setting;
 
     protected abstract TValue DefaultValue { get; }
 
