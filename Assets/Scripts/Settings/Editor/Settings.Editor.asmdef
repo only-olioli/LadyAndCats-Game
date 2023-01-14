@@ -1,0 +1,20 @@
+{
+    "name": "Settings.Editor",
+    "rootNamespace": "Settings.Editor",
+    "references": [
+        "GUID:e5f7439891abbb642a22ae9afc4f5134",
+        "GUID:8d9078b483d55934a8f1836c0611ff9b",
+        "GUID:f1cce77764a5ef9418df25f86fe95177",
+        "GUID:757fa466f759ec14a90a7bb851452df6",
+        "GUID:081decd71db72b841a5f07973947dd38"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
