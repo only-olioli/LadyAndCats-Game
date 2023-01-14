@@ -10,24 +10,20 @@ public class Movement : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float jumpHeight;
 
-    private Vector3 velocity;
-    private bool isGrounded;
+    private Vector3 _velocity;
+    private bool _isGrounded;
 
-    [SerializeField] private InputActionAsset inputAsset;
-    private InputAction movement;
-    private InputAction jump;
+    private InputAction _movement;
 
-    void Start()
+    private void Start()
     {
-        movement = inputAsset.FindAction("KeyboardDelta");
-
-        jump = inputAsset.FindAction("jump");
-
-        movement.Enable();
-        jump.Enable();
+        _movement = new InputAction("movement");
+        _movement.AddCompositeBinding(
+            "",
+            ) ;
     }
 
-    void Update()
+    private void Update()
     {
         float x;
         float z;
