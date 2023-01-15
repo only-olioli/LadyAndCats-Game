@@ -18,9 +18,6 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         _movement = new InputAction("movement");
-        _movement.AddCompositeBinding(
-            "",
-            ) ;
     }
 
     private void Update()
@@ -29,29 +26,29 @@ public class Movement : MonoBehaviour
         float z;
         bool jumpPressed = false;
 
-        var delta = movement.ReadValue<Vector2>();
+        var delta = _movement.ReadValue<Vector2>();
         x = delta.x;
         z = delta.y;
-        jumpPressed = Mathf.Approximately(jump.ReadValue<float>(), 1);
+        jumpPressed = Mathf.Approximately(Keyboard.current.spaceKey.ReadValue(), 1);
 
-        isGrounded = controller.isGrounded;
+        _isGrounded = controller.isGrounded;
 
-        if (isGrounded && velocity.y < 0)
+        if (_isGrounded && _velocity.y < 0)
         {
-            velocity.y = -2f;
+            _velocity.y = -2f;
         }
 
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
 
-        if (jumpPressed && isGrounded)
+        if (jumpPressed && _isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        velocity.y += gravity * Time.deltaTime;
+        _velocity.y += gravity * Time.deltaTime;
 
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(_velocity * Time.deltaTime);
     }
 }
