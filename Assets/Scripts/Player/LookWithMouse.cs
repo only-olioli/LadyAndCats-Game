@@ -18,7 +18,7 @@ public class LookWithMouse : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    public void Look()
     {
         if (isActive)
         {

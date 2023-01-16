@@ -4,32 +4,51 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    [SerializeField] private CharacterController controller;
+    private CharacterController controller;
 
-    [SerializeField] private float speed;
-    [SerializeField] private float gravity;
-    [SerializeField] private float jumpHeight;
+    public float speed = 5;
+    public float runSpeed = 7;
+    public float gravity = -10;
+    public float jumpHeight = 0.8f;
 
     private Vector3 _velocity;
     private bool _isGrounded;
 
-    private InputAction _movement;
+    public InputAction movement;
+    public InputAction run;
+    public InputAction jump;
 
     private void Start()
     {
-        _movement = new InputAction("movement");
+        controller = GetComponent<CharacterController>();
+    }
+    public void BindingsActivate()
+    {
+        movement.Enable();
+        jump.Enable();
     }
 
-    private void Update()
+    void OnDisable()
+    {
+        movement.Disable();
+        jump.Disable();
+    }
+
+    public void Move()
     {
         float x;
         float z;
+        float ActualSpeed;
         bool jumpPressed = false;
+        bool runPressed = false;
 
-        var delta = _movement.ReadValue<Vector2>();
+        var delta = movement.ReadValue<Vector2>();
         x = delta.x;
         z = delta.y;
-        jumpPressed = Mathf.Approximately(Keyboard.current.spaceKey.ReadValue(), 1);
+        jumpPressed = Mathf.Approximately(jump.ReadValue<float>(), 1);
+        runPressed = Mathf.Approximately(run.ReadValue<float>(), 1);
+
+        ActualSpeed = runPressed ? runSpeed : speed;
 
         _isGrounded = controller.isGrounded;
 
@@ -40,7 +59,7 @@ public class Movement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * ActualSpeed * Time.deltaTime);
 
         if (jumpPressed && _isGrounded)
         {
